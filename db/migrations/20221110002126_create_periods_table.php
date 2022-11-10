@@ -1,10 +1,9 @@
 <?php
-
 declare(strict_types=1);
 
 use Phinx\Migration\AbstractMigration;
 
-final class CreatePositionsTable extends AbstractMigration
+final class CreatePeriodsTable extends AbstractMigration
 {
     /**
      * Change Method.
@@ -19,10 +18,11 @@ final class CreatePositionsTable extends AbstractMigration
      */
     public function change()
     {
-        $table = $this->table('positions', ['id' => false, 'primary_key' => 'position_id']);
-        $table->addColumn('position_id', 'integer', ['null' => false])
-            ->addColumn('name', 'string', ['limit' => 60])
-            ->addColumn('description', 'string', ['limit' => 200])
+        $table = $this->table('periods', ['id' => false, 'primary_key' => 'period_id']);
+        $table->addColumn('period_id', 'integer', ['null' => false])
+            ->addColumn('week', 'string', ['limit' => 60])
+            ->addColumn('init_date', 'timestamp')
+            ->addColumn('end_date', 'timestamp')
             ->addColumn('created_at', 'timestamp', ['default' => 'CURRENT_TIMESTAMP'])
             ->addColumn('updated_at', 'timestamp', ['default' => 'CURRENT_TIMESTAMP'])
             ->create();
